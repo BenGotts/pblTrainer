@@ -11,16 +11,16 @@ def getCases(topCases, bottomCases):
     trainingCases = []
 
     for case in data['cases']:
+        # Uncomment next 4 lines to get all cases within a set
         # if(case['bottom'] in bottomCases):
         #     trainingCases.append(case)
-        # #     print(case['top'], case['bottom'], case['alg'], "inv:", case['inv'])
         # elif(case['top'] in topCases):
-        #     # print(case)
         #     trainingCases.append(case)
-        #     # print(case['top'], case['bottom'], case['alg'], "inv:", case['inv'])
+
+        # Comment out next 2 lines to remove exact cases
         if((case['bottom'] in bottomCases) and (case['top'] in topCases)):
             trainingCases.append(case)
-    # print(trainingCases, "\n")
+
     f.close()
     return trainingCases
 
