@@ -1,8 +1,6 @@
 import json
 import random
 
-# random.seed()
-
 def getCases(topCases, bottomCases, y):
 
     with open('algs.json') as f:
@@ -11,7 +9,6 @@ def getCases(topCases, bottomCases, y):
     trainingCases = []
 
     for case in data['cases']:
-        # Uncomment next 4 lines to get all cases within a set
         if(y == 'yes'):
             if((case['bottom'] in bottomCases) and (case['top'] in topCases)):
                 trainingCases.append(case)
