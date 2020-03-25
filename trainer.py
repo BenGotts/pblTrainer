@@ -3,7 +3,7 @@ import random
 
 # random.seed()
 
-def getCases(topCases, bottomCases):
+def getCases(topCases, bottomCases, y):
 
     with open('algs.json') as f:
         data = json.load(f)
@@ -12,14 +12,16 @@ def getCases(topCases, bottomCases):
 
     for case in data['cases']:
         # Uncomment next 4 lines to get all cases within a set
-        # if(case['bottom'] in bottomCases):
-        #     trainingCases.append(case)
-        # elif(case['top'] in topCases):
-        #     trainingCases.append(case)
+        if(y == 'yes'):
+            if((case['bottom'] in bottomCases) and (case['top'] in topCases)):
+                trainingCases.append(case)
 
-        # Comment out next 2 lines to remove exact cases
-        if((case['bottom'] in bottomCases) and (case['top'] in topCases)):
-            trainingCases.append(case)
+        else:
+            if(case['bottom'] in bottomCases):
+                trainingCases.append(case)
+            elif(case['top'] in topCases):
+                trainingCases.append(case)
+
 
     f.close()
     return trainingCases
@@ -61,9 +63,12 @@ def main():
         topCases = ['A-', 'A+', 'adj', 'Ba', 'Bb', 'Ca', 'Cb', 'Da', 'Db', 'E', 'F', 'Ga', 'Gb', 'Gc', 'Gd', 'H', 'Ja', 'Jb', 'Ka', 'Kb', 'M', 'Na', 'Nb', 'O-', 'O+', 'opp', 'Pa', 'Pb', 'pJ', 'pN', 'Q', 'Ra', 'Rb', 'Sa', 'Sb', 'T', 'U-', 'U+', 'V', 'W', 'X', 'Y', 'Z', '-']
         bottomCases = ['A-', 'A+', 'adj', 'Ba', 'Bb', 'Ca', 'Cb', 'Da', 'Db', 'E', 'F', 'Ga', 'Gb', 'Gc', 'Gd', 'H', 'Ja', 'Jb', 'Ka', 'Kb', 'M', 'Na', 'Nb', 'O-', 'O+', 'opp', 'Pa', 'Pb', 'pJ', 'pN', 'Q', 'Ra', 'Rb', 'Sa', 'Sb', 'T', 'U-', 'U+', 'V', 'W', 'X', 'Y', 'Z', '-']
 
-    trainingCases = getCases(topCases, bottomCases)
+    # Default to not exact cases
+    y = input("Exact cases? (yes/no): ")
+    trainingCases = getCases(topCases, bottomCases, y)
+
     if(len(trainingCases) == 0):
-        print("\nTraining all cases, parity or bad input was detected")
+        print("\nTraining all cases; parity or bad input was detected")
         topCases = ['A-', 'A+', 'adj', 'Ba', 'Bb', 'Ca', 'Cb', 'Da', 'Db', 'E', 'F', 'Ga', 'Gb', 'Gc', 'Gd', 'H', 'Ja', 'Jb', 'Ka', 'Kb', 'M', 'Na', 'Nb', 'O-', 'O+', 'opp', 'Pa', 'Pb', 'pJ', 'pN', 'Q', 'Ra', 'Rb', 'Sa', 'Sb', 'T', 'U-', 'U+', 'V', 'W', 'X', 'Y', 'Z', '-']
         bottomCases = ['A-', 'A+', 'adj', 'Ba', 'Bb', 'Ca', 'Cb', 'Da', 'Db', 'E', 'F', 'Ga', 'Gb', 'Gc', 'Gd', 'H', 'Ja', 'Jb', 'Ka', 'Kb', 'M', 'Na', 'Nb', 'O-', 'O+', 'opp', 'Pa', 'Pb', 'pJ', 'pN', 'Q', 'Ra', 'Rb', 'Sa', 'Sb', 'T', 'U-', 'U+', 'V', 'W', 'X', 'Y', 'Z', '-']
         trainingCases = getCases(topCases, bottomCases)
