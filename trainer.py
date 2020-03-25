@@ -53,7 +53,9 @@ def main():
     print("Valid inputs: A-, A+, adj, Ba, Bb, Ca, Cb, Da, Db, E, F, Ga, Gb, Gc, Gd, H, Ja, Jb, Ka, Kb, M, Na, Nb, O-, O+, opp, Pa, Pb, pJ, pN, Q, Ra, Rb, Sa, Sb, T, U-, U+, V, W, X, Y, Z, -")
 
     x = input("Train all cases? (yes/no): ")
+    y = 'no'
     if(x == "no"):
+        y = input("Exact cases? (yes/no): ")
         topCases = getUserTopCases()
         bottomCases = getUserBottomCases()
     else:
@@ -61,7 +63,6 @@ def main():
         bottomCases = ['A-', 'A+', 'adj', 'Ba', 'Bb', 'Ca', 'Cb', 'Da', 'Db', 'E', 'F', 'Ga', 'Gb', 'Gc', 'Gd', 'H', 'Ja', 'Jb', 'Ka', 'Kb', 'M', 'Na', 'Nb', 'O-', 'O+', 'opp', 'Pa', 'Pb', 'pJ', 'pN', 'Q', 'Ra', 'Rb', 'Sa', 'Sb', 'T', 'U-', 'U+', 'V', 'W', 'X', 'Y', 'Z', '-']
 
     # Default to not exact cases
-    y = input("Exact cases? (yes/no): ")
     trainingCases = getCases(topCases, bottomCases, y)
 
     if(len(trainingCases) == 0):
